@@ -46,7 +46,9 @@ export class UserService {
    * The method is: this.http.post
    */
 
-
+  create(item: User): Observable<any> {
+    return this.http.post<User>(this.endpoint,item);
+  }
 
   /**
    * Update a user in the database.

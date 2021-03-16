@@ -1,5 +1,8 @@
-<div class="row">
+<div *ngIf="users$" class="row">
   <div class="col-12 mt-2">
+    <button type="submit" [routerLink]="['user/' + 0]" class="btn btn-primary btn-block mt-5">
+      <i class="fa fa-plus"></i>
+    </button>
     <h2>User List</h2>
     <label for="search" class="mx-2">Szűrés: </label>
     <input id="search" 
@@ -18,7 +21,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users$ | async | filter:phrase:'name' |sorter:currentCol:'up'">
-          <td *ngFor="let coulmn of columns"> <input type="text" [(ngModel)]= "user[coulmn.name]" class="form-control"> </td>
+          <td *ngFor="let coulmn of columns"> <span > {{ user[coulmn.name]}}</span> </td>
           <td>
             <div class="btn-group">
               <button [routerLink]="['user/' + user.id]" class="btn btn-info">

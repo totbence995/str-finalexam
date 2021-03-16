@@ -3,13 +3,11 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/service/user.service';
 
-
-class Column{
+export class Column{
   name:string="";
   title:string="";
+  type:string="";
 }
-
-
 
 @Component({
   selector: 'app-user-list',
@@ -19,12 +17,12 @@ class Column{
 export class UserListComponent implements OnInit {
 
   columns:Column[]=[
-    {name:"id", title:"#"},
-    {name:"name", title:"Name"},
-    {name:"email", title:"Email"},
-    {name:"address", title:"Address"},
-    {name:"active", title:"Active"},
-  ]
+    {name:"id", title:"#", type:"text"},
+    {name:"name", title:"Name", type:"text"},
+    {name:"email", title:"Email", type:"email" },
+    {name:"address", title:"Address", type: "text"},
+    {name:"active", title:"Active", type: "checkbox" },
+  ];
 
   users$: Observable<User[]> = this.userService.getAll();
   phrase:string ="";
@@ -41,7 +39,7 @@ export class UserListComponent implements OnInit {
     this.userService.remove(user).subscribe(i=>{
     });
     this.userService.getAll().subscribe(i=>{
-      
+
     })
   }
 

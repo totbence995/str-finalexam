@@ -11,6 +11,7 @@ import { UserEditorComponent } from './page/user-editor/user-editor.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 
+
 @NgModule({
   declarations: [
     AppComponent,

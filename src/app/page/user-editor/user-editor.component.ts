@@ -1,5 +1,6 @@
+import { ElementSchemaRegistry } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -38,8 +39,10 @@ export class UserEditorComponent implements OnInit {
   }
 
   onUpdate(form: NgForm, item: User): void {
-    this.userService.update(item).subscribe(i=>{
-    })
+    if(item.id != 0)
+      this.userService.update(item).subscribe(i=>{});
+    else
+      this.userService.create(item).subscribe(i=>{});
   }
 
 }
