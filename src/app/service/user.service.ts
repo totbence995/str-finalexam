@@ -35,7 +35,10 @@ export class UserService {
    * Delete a user from the database.
    * The method is: this.http.delete
    */
-
+  remove(product: User): Observable<any>{
+      let url:string = `${this.endpoint}/${product.id}`
+          return this.http.delete<User>( url );
+  }
 
 
   /**
