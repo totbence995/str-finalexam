@@ -1,6 +1,13 @@
 <div class="row">
   <div class="col-12 mt-2">
     <h2>User List</h2>
+    <label for="search" class="mx-2">Szűrés: </label>
+    <input id="search" 
+          (keyup)="onChangePhrase($event)" 
+          class="form-control mr-sm-2"
+          type="text"
+          placeholder="kifejezés" 
+          [value]="phrase">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -13,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr *ngFor="let user of users$ | async | filter:phrase:'name'">
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
