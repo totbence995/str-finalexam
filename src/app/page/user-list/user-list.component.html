@@ -11,21 +11,14 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Address</th>
-          <th>Active</th>
-          <th></th>
+          <th *ngFor="let column of columns"
+              (click)="onHeaderClick(column.name)"
+            >{{column.title}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async | filter:phrase:'name'">
-          <td>{{ user.id }}</td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.address }}</td>
-          <td>{{ user.active }}</td>
+        <tr *ngFor="let user of users$ | async | filter:phrase:'name' |sorter:currentCol:'up'">
+          <td *ngFor="let coulmn of columns"> <input type="text" [(ngModel)]= "user[coulmn.name]" class="form-control"> </td>
           <td>
             <div class="btn-group">
               <button [routerLink]="['user/' + user.id]" class="btn btn-info">
